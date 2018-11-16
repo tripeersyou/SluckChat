@@ -26,7 +26,7 @@ public class Channel {
 	@JoinColumn(name="id", referencedColumnName="id", insertable=false, updatable=false)
 	private Team team_id;
 	
-	 @ManyToMany(mappedBy = "channels")
-	    private List<User> users = new ArrayList<>();
-	
+	@ManyToMany(mappedBy = "channels")
+	private List<User> users = new ArrayList<>();
+
 }
