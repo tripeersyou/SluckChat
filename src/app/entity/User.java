@@ -36,5 +36,18 @@ public class User {
 	        inverseJoinColumns = @JoinColumn(name = "team_id")
 	    )
     private List<Team> teams = new ArrayList<>();
+	
+	
+	@ManyToMany(cascade = { 
+	        CascadeType.PERSIST, 
+	        CascadeType.MERGE
+	    })
+	    @JoinTable(name = "user_channel",
+	        joinColumns = @JoinColumn(name = "user_id"),
+	        inverseJoinColumns = @JoinColumn(name = "channel_id")
+	    )
+    private List<Channel> channels = new ArrayList<>();
+	
+	
 
 }
