@@ -55,8 +55,9 @@ public class Channel {
 	@Column
 	private String name; 
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name="id", referencedColumnName="id", insertable=false, nullable=false, updatable=false)
+	@ManyToOne
+	//(fetch = FetchType.LAZY, optional = true)
+	//@JoinColumn(name="id", nullable=false)
 	private Team team_id;
 	
 	@ManyToMany(mappedBy = "channels")
