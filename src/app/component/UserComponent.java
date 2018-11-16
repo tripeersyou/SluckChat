@@ -10,9 +10,9 @@ import app.repository.UserRepository;
 public class UserComponent {
 	
 	@Autowired
-	UserRepository repo;
+	UserRepository user_repo;
 	
 	public User getUser(String lastName){
-		return repo.findByLastName(lastName);
+		return user_repo.findByLastName(lastName);
 	}
 }

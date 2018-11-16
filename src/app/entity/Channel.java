@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,8 +55,8 @@ public class Channel {
 	@Column
 	private String name; 
 	
-	@ManyToOne
-	@JoinColumn(name="id", referencedColumnName="id", insertable=false, updatable=false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name="id", referencedColumnName="id", insertable=false, nullable=false, updatable=false)
 	private Team team_id;
 	
 	@ManyToMany(mappedBy = "channels")
