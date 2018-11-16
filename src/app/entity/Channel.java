@@ -19,6 +19,38 @@ public class Channel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Team getTeam_id() {
+		return team_id;
+	}
+
+	public void setTeam_id(Team team_id) {
+		this.team_id = team_id;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 	@Column
 	private String name; 
 	
