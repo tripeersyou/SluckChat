@@ -19,7 +19,7 @@ public class Channel {
 	private String name; 
 	
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="id", referencedColumnName="id", insertable=false, updatable=false)
 	private Team team_id;
 	
 	
