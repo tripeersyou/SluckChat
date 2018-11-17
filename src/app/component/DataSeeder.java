@@ -1,15 +1,8 @@
 package app.component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import app.entity.Channel;
 import app.entity.Team;
 import app.entity.User;
@@ -53,26 +46,25 @@ public class DataSeeder {
 	}
 	
 	//team
-		@PostConstruct
-		public void init2(){
-			if (team_repo.count()== 0) {
-				Team t = createTeam("MISA");
-				team_repo.save(t);	
+	@PostConstruct
+	public void init2(){
+		if (team_repo.count()== 0) {
+			Team t = createTeam("MISA");
+			team_repo.save(t);	
 		}
 	}
-		
-		private Team createTeam(String name) {
-			Team t = new Team();
-			t.setName(name);
-			return t;
-		}
-		
-		//channel
-		private Channel createChannel(String name){
-			Channel c = new Channel();
-			c.setName(name);
-			return c;
-		}
-		
+	
+	private Team createTeam(String name) {
+		Team t = new Team();
+		t.setName(name);
+		return t;
+	}
+			
+	//channel
+	private Channel createChannel(String name){
+		Channel c = new Channel();
+		c.setName(name);
+		return c;
+	}		
 }
 

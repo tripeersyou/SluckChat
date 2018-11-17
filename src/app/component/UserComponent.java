@@ -12,7 +12,7 @@ public class UserComponent {
 	@Autowired
 	UserRepository user_repo;
 	
-	public User getUser(String lastName){
-		return user_repo.findByLastName(lastName);
+	public User getUser(String last_name){
+		return user_repo.findByLastName(last_name);
 	}
 }
