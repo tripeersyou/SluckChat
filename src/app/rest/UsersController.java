@@ -24,7 +24,7 @@ import app.repository.UserRepository;
 public class UsersController {
 	
 	@Autowired
-	UserComponent user_component;
+	UserComponent user_comp;
 	
 	@Autowired
 	UserRepository user_repo; 
@@ -33,7 +33,7 @@ public class UsersController {
 	@Path("/find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUsers(@QueryParam("name") String last_name) throws IOException{
-		return user_component.getUser(last_name);
+		return user_comp.getUser(last_name);
 	}
 	
 	@POST
