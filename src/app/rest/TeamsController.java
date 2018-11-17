@@ -41,6 +41,7 @@ public class TeamsController {
 	public String addTeam(@FormParam("a") String name){
 		Team t = new Team();
 		t.setName(name);
+		team_repo.save(t);
 		return "welcome " + name + " to the party";
 	}
 }
