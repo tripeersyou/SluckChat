@@ -18,7 +18,24 @@ public class Chat {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; 
+	private Long id;
+	
+	@ManyToOne
+	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+	private User from_user_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+	private User to_user_id;
+	
+	@Column
+	private String message;
+	
+	//not sure if tama 
+	@Basic(optional = false)
+	@Column(insertable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
 	
 	public Long getId() {
 		return id;
@@ -59,22 +76,5 @@ public class Chat {
 	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-	private User from_user_id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-	private User to_user_id;
-	
-	@Column
-	private String message;
-	
-	//not sure if tama 
-	@Basic(optional = false)
-	@Column(insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created_at;
 
 }

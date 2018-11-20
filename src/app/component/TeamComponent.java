@@ -9,10 +9,15 @@ import app.repository.TeamRepository;
 @Component
 public class TeamComponent {
 	@Autowired
-	TeamRepository team_repo;
+	private TeamRepository teamRepository;
 	
-	public Team getTeam(String name){
-		return team_repo.findByName(name);
+	public Team getTeam(Long id){
+		return teamRepository.findOne(id);
+	}
+	
+	public Team create(Team t) {
+		teamRepository.save(t);
+		return t;
 	}
 
 }

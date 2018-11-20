@@ -13,38 +13,31 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import app.component.UserComponent;
 import app.entity.User;
-import app.repository.UserRepository;
 
 @Component
 @Path("/users")
 public class UsersController {
 	
 	@Autowired
-	UserComponent user_comp;
+	private UserComponent userComponent;
 	
-	@Autowired
-	UserRepository user_repo; 
-	
-	@GET 
-	@Path("/find")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUsers(@QueryParam("name") String last_name) throws IOException{
-		return user_comp.getUser(last_name);
+	public User show(@QueryParam("user_id") Long id) {
+		return userComponent.getUser(id);
 	}
 	
 	@POST
-	@Path("/adduser")
+	@Path("/new")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String addUser(@FormParam("a") String firstName, @FormParam("b") String lastName){
+	public User create(@FormParam("first_name") String firstName, @FormParam("last_name") String lastName) throws IOException{
 		User u = new User();
 		u.setFirstName(firstName);
 		u.setLastName(lastName);
-		user_repo.save(u);
-		return "welcome " + firstName +" "+ lastName + " to the party";
+		return userComponent.create(u);
 	}
 }

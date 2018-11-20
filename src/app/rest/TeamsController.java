@@ -16,33 +16,27 @@ import org.springframework.stereotype.Component;
 
 import app.component.TeamComponent;
 import app.entity.Team;
-import app.repository.TeamRepository;
 
 @Component
 @Path("/teams")
 public class TeamsController {
 	
 	@Autowired
-	TeamComponent team_comp;
-	
-	@Autowired
-	TeamRepository team_repo;
+	private TeamComponent teamComponent;
 	
 	@GET
-	@Path("/find")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Team getTeam(@QueryParam("name") String name) throws IOException{
-		return team_comp.getTeam(name);
+	public Team show(@QueryParam("team_id") Long id) {
+		return teamComponent.getTeam(id);
 	}
 	
 	@POST
-	@Path("/addteam")
+	@Path("/new")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String addTeam(@FormParam("a") String name){
+	public Team create(@FormParam("name") String name) throws IOException{
 		Team t = new Team();
 		t.setName(name);
-		team_repo.save(t);
-		return "welcome " + name + " to the party";
+		return teamComponent.create(t);
 	}
 }

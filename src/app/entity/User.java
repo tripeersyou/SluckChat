@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.swing.text.html.HTML.Tag;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -20,6 +19,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column
+	private String firstName;
+	
+	@Column
+	private String lastName;
 	
 	public Long getId() {
 		return id;
@@ -51,53 +56,24 @@ public class User {
 	}
 
 
-	public List<Team> getTeams() {
-		return teams;
-	}
+//	public List<Team> getTeams() {
+//		return teams;
+//	}
+//
+//
+//	public void setTeams(List<Team> teams) {
+//		this.teams = teams;
+//	}
 
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
-
-
-	public List<Channel> getChannels() {
-		return channels;
-	}
-
-
-	public void setChannels(List<Channel> channels) {
-		this.channels = channels;
-	}
-
-
-	@Column
-	private String firstName;
-	
-	@Column
-	private String lastName;
-	
-	@ManyToMany(cascade = { 
-	        CascadeType.PERSIST, 
-	        CascadeType.MERGE
-	    })
-	    @JoinTable(name = "user_team",
-	        joinColumns = @JoinColumn(name = "user_id"),
-	        inverseJoinColumns = @JoinColumn(name = "team_id")
-	    )
-    private List<Team> teams = new ArrayList<>();
+//
+//	public List<Channel> getChannels() {
+//		return channels;
+//	}
+//
+//
+//	public void setChannels(List<Channel> channels) {
+//		this.channels = channels;
+//	}
 	
 	
-	@ManyToMany(cascade = { 
-	        CascadeType.PERSIST, 
-	        CascadeType.MERGE
-	    })
-	    @JoinTable(name = "user_channel",
-	        joinColumns = @JoinColumn(name = "user_id"),
-	        inverseJoinColumns = @JoinColumn(name = "channel_id")
-	    )
-    private List<Channel> channels = new ArrayList<>();
-	
-	
-
 }
