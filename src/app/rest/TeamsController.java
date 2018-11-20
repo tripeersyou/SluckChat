@@ -1,5 +1,7 @@
 package app.rest;
 
+import java.io.IOException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -14,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import app.component.TeamComponent;
 import app.entity.Team;
-import app.entity.User;
 import app.repository.TeamRepository;
 
 @Component
@@ -30,7 +31,7 @@ public class TeamsController {
 	@GET
 	@Path("/find")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Team getTeam(@QueryParam("name") String name){
+	public Team getTeam(@QueryParam("name") String name) throws IOException{
 		return team_comp.getTeam(name);
 	}
 	
