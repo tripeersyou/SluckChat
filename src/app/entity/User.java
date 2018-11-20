@@ -1,6 +1,5 @@
 package app.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.swing.text.html.HTML.Tag;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -35,6 +33,6 @@ public class User {
 	        joinColumns = @JoinColumn(name = "user_id"),
 	        inverseJoinColumns = @JoinColumn(name = "team_id")
 	    )
-    private List<Team> teams = new ArrayList<>();
+    private List<Team> teams;
 
 }

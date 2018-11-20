@@ -1,6 +1,5 @@
 package app.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,6 +19,6 @@ public class Team {
 	private String name;
 	
 	 @ManyToMany(mappedBy = "teams")
-	    private List<User> users = new ArrayList<>();
+	    private List<User> users;
 	 
 }
