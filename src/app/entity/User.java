@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -55,7 +56,13 @@ public class User {
 		this.lastName = lastName;
 	}
 
-
+	 @OneToMany(
+			 	mappedBy = "user",
+		        cascade = CascadeType.ALL, 
+		        orphanRemoval = true
+		    )
+	 private List<UserTeam> teams = new ArrayList<>();
+	 
 //	public List<Team> getTeams() {
 //		return teams;
 //	}

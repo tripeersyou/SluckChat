@@ -3,12 +3,15 @@ package app.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Team {
@@ -34,5 +37,12 @@ public class Team {
 	public void setName(String name) {
 		this.name = name;
 	}
-	 
+	
+	@OneToMany(
+				mappedBy="team",
+		        cascade = CascadeType.ALL, 
+		        orphanRemoval = true
+		    )
+	 private List<UserTeam> users = new ArrayList<>();
+	
 }
