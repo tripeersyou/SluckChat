@@ -26,26 +26,6 @@ public class User {
 	@Column
 	private String lastName;
 	
-	@ManyToMany(cascade = { 
-	        CascadeType.PERSIST, 
-	        CascadeType.MERGE
-	    })
-	    @JoinTable(name = "user_team",
-	        joinColumns = @JoinColumn(name = "user_id"),
-	        inverseJoinColumns = @JoinColumn(name = "team_id")
-	    )
-    private List<Team> teams = new ArrayList<>();
-	
-	@ManyToMany(cascade = { 
-	        CascadeType.PERSIST, 
-	        CascadeType.MERGE
-	    })
-	    @JoinTable(name = "user_channel",
-	        joinColumns = @JoinColumn(name = "user_id"),
-	        inverseJoinColumns = @JoinColumn(name = "channel_id")
-	    )
-    private List<Channel> channels =  new ArrayList<>();
-	
 	public Long getId() {
 		return id;
 	}
@@ -76,24 +56,24 @@ public class User {
 	}
 
 
-	public List<Team> getTeams() {
-		return teams;
-	}
+//	public List<Team> getTeams() {
+//		return teams;
+//	}
+//
+//
+//	public void setTeams(List<Team> teams) {
+//		this.teams = teams;
+//	}
 
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
-
-
-	public List<Channel> getChannels() {
-		return channels;
-	}
-
-
-	public void setChannels(List<Channel> channels) {
-		this.channels = channels;
-	}
+//
+//	public List<Channel> getChannels() {
+//		return channels;
+//	}
+//
+//
+//	public void setChannels(List<Channel> channels) {
+//		this.channels = channels;
+//	}
 	
 	
 }

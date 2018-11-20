@@ -26,10 +26,7 @@ public class Channel {
 	@ManyToOne
 	//(fetch = FetchType.LAZY, optional = true)
 	//@JoinColumn(name="id", nullable=false)
-	private Team team_id;
-	
-	@ManyToMany(mappedBy = "channels")
-	private List<User> users = new ArrayList<>();
+	private Team team;
 	
 	public Long getId() {
 		return id;
@@ -47,20 +44,12 @@ public class Channel {
 		this.name = name;
 	}
 
-	public Team getTeam_id() {
-		return team_id;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setTeam_id(Team team_id) {
-		this.team_id = team_id;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 }
