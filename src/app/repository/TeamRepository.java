@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 import app.entity.Team;
 
 @Repository
-public interface TeamRepository
-	extends JpaRepository<Team, Long>{
-		
-		public Team findByName(String name);
-	}
+public interface TeamRepository extends JpaRepository<Team, Long>{
 
-
+}

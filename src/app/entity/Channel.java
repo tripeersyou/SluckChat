@@ -20,6 +20,17 @@ public class Channel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column
+	private String name; 
+	
+	@ManyToOne
+	//(fetch = FetchType.LAZY, optional = true)
+	//@JoinColumn(name="id", nullable=false)
+	private Team team_id;
+	
+	@ManyToMany(mappedBy = "channels")
+	private List<User> users = new ArrayList<>();
+	
 	public Long getId() {
 		return id;
 	}
@@ -51,16 +62,5 @@ public class Channel {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-	@Column
-	private String name; 
-	
-	@ManyToOne
-	//(fetch = FetchType.LAZY, optional = true)
-	//@JoinColumn(name="id", nullable=false)
-	private Team team_id;
-	
-	@ManyToMany(mappedBy = "channels")
-	private List<User> users = new ArrayList<>();
 
 }

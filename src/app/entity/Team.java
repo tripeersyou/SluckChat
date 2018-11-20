@@ -1,5 +1,6 @@
 package app.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +15,12 @@ public class Team {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column
+	private String name;
+	
+	@ManyToMany(mappedBy = "teams")
+	private List<User> users =  new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -38,11 +45,5 @@ public class Team {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-	@Column
-	private String name;
-	
-	 @ManyToMany(mappedBy = "teams")
-	    private List<User> users;
 	 
 }

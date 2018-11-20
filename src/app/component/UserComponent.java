@@ -10,9 +10,14 @@ import app.repository.UserRepository;
 public class UserComponent {
 	
 	@Autowired
-	UserRepository user_repo;
+	private UserRepository userRepository;
 	
-	public User getUser(String last_name){
-		return user_repo.findByLastName(last_name);
+	public User getUser(Long id){
+		return userRepository.findOne(id);
+	}
+	
+	public User create(User u) {
+		userRepository.save(u);
+		return u;
 	}
 }

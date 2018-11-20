@@ -9,10 +9,10 @@ import app.repository.ChannelRepository;
 @Component
 public class ChannelComponent {
 	@Autowired
-	ChannelRepository channel_repo;
+	private ChannelRepository channelRepository;
 	
-	public Channel getChannel(String name){
-		return channel_repo.findByName(name);
+	public Channel getChannel(Long id){
+		return channelRepository.findOne(id);
 	}
 
 }

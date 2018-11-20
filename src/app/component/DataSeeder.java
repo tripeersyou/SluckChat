@@ -13,29 +13,27 @@ import app.repository.UserRepository;
 @Component
 public class DataSeeder {
 	@Autowired
-	private UserRepository user_repo;
+	private UserRepository userRepository;
 	
 	@Autowired 
-	private TeamRepository team_repo;
+	private TeamRepository teamRepository;
 	
 	@Autowired
-	private ChannelRepository channel_repo;
+	private ChannelRepository channelRepository;
 	
 	//users
 	@PostConstruct
 	public void init(){
-		if (user_repo.count()== 0) {
+		if (userRepository.count()== 0) {
 			User u = createUser("Luis Gabriel", "Cajucom");
-			user_repo.save(u);	
+			userRepository.save(u);	
 			
 			User u2 = createUser("John Vincent", "Agbayani");
-			user_repo.save(u2);
+			userRepository.save(u2);
 			
 			User u3 = createUser("John Paulo","Gozum");
-			user_repo.save(u3);
-					
-			}
-		
+			userRepository.save(u3);
+		}
 	}
 	
 	private User createUser(String firstName, String lastName) {
@@ -48,9 +46,9 @@ public class DataSeeder {
 	//team
 	@PostConstruct
 	public void init2(){
-		if (team_repo.count()== 0) {
+		if (teamRepository.count()== 0) {
 			Team t = createTeam("MISA");
-			team_repo.save(t);	
+			teamRepository.save(t);	
 		}
 	}
 	
