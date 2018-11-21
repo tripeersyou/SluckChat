@@ -15,4 +15,8 @@ public class ChannelComponent {
 		return channelRepository.findOne(id);
 	}
 
+	public Channel createChannel(Channel c){
+		channelRepository.save(c);
+		return c;
+	}
 }
