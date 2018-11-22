@@ -13,7 +13,13 @@ public class UserTeamComponent {
 	private UserTeamRepository user_team_repo;
 	
 	public UserTeam getUserTeam(Long id){
-		return user_team_repo.findOne(id);
+		try {
+			return user_team_repo.findOne(id);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
 	public UserTeam create(UserTeam u){

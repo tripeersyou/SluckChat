@@ -8,6 +8,7 @@ import app.repository.ChannelRepository;
 
 @Component
 public class ChannelComponent {
+	
 	@Autowired
 	private ChannelRepository channelRepository;
 	

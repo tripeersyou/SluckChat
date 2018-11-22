@@ -39,7 +39,6 @@ public class UserTeamController {
 		return team_comp.getUserTeam(id);
 	}
 	
-	
 	@POST
 	@Path("/new")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
