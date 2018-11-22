@@ -12,6 +12,8 @@ public class TeamComponent {
 	private TeamRepository teamRepository;
 	
 	public Team getTeam(Long id){
+		
+		System.out.println(id);
 		return teamRepository.findOne(id);
 	}
 	

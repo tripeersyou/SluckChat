@@ -44,6 +44,8 @@ public class UserTeamController {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserTeam createUserTeam(@FormParam("user") Long user_id, @FormParam("team") Long team_id) throws IOException{
+		
+		
 		User user = user_comp.getUser(user_id);
  		Team team = team_component.getTeam(team_id);
 		UserTeam u = new UserTeam();

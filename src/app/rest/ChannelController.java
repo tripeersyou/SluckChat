@@ -39,11 +39,20 @@ public class ChannelController {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Channel createChannel(@FormParam("name") String name, @FormParam("team") Long team_id) throws IOException{
- 		Team team = team_comp.getTeam(team_id);
-		Channel c = new Channel();
-		c.setTeam(team);
-		c.setName(name);
-		return channel_comp.createChannel(c);
+	public Channel createChannel(@FormParam("name") String name, @FormParam("team") long team_id) throws IOException{
+ 		try {
+ 			System.out.println(team_id);
+ 			
+ 			
+			Team team = team_comp.getTeam(team_id);
+			Channel c = new Channel();
+			c.setTeam(team);
+			c.setName(name);
+			return channel_comp.createChannel(c);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+			}
 		}
 }
