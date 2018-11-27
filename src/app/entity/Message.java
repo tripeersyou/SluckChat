@@ -5,10 +5,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,19 +23,19 @@ public class Message {
 	@Column
 	private String message;
 	
-	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+	@Column(name="created_at", insertable=false, updatable=false)
+	private String created_at = new Date().toString();
+	
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User user_id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-	private Channel channel_id;
-	
-	//not sure if tama 
-	@Basic(optional = false)
-	@Column(insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created_at;
 	
 	public Long getId() {
 		return id;
@@ -61,20 +61,17 @@ public class Message {
 		this.user_id = user_id;
 	}
 
-	public Channel getChannel_id() {
-		return channel_id;
-	}
-
-	public void setChannel_id(Channel channel_id) {
-		this.channel_id = channel_id;
-	}
-
-	public Date getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
 	
+
+
+	public Channel getChannel() {
+		return channel;
+	}
+
+	public void setChannel(Channel channel) {
+		this.channel = channel;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Channel channel;
 }

@@ -21,22 +21,18 @@ public class Chat {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-	private User from_user_id;
+	private User sender;
 	
 	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-	private User to_user_id;
+	private User recipient;
 	
 	@Column
 	private String message;
 	
-	//not sure if tama 
-	@Basic(optional = false)
-	@Column(insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created_at;
-	
+
+	@Column
+	private String created_at = new Date().toString();
+
 	public Long getId() {
 		return id;
 	}
@@ -45,20 +41,21 @@ public class Chat {
 		this.id = id;
 	}
 
-	public User getFrom_user_id() {
-		return from_user_id;
+	
+	public User getSender() {
+		return sender;
 	}
 
-	public void setFrom_user_id(User from_user_id) {
-		this.from_user_id = from_user_id;
+	public void setSender(User sender) {
+		this.sender = sender;
 	}
 
-	public User getTo_user_id() {
-		return to_user_id;
+	public User getRecipient() {
+		return recipient;
 	}
 
-	public void setTo_user_id(User to_user_id) {
-		this.to_user_id = to_user_id;
+	public void setRecipient(User recipient) {
+		this.recipient = recipient;
 	}
 
 	public String getMessage() {
@@ -69,12 +66,13 @@ public class Chat {
 		this.message = message;
 	}
 
-	public Date getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
 
-	public void setCreated_at(Date created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
-
+	
+	
 }
