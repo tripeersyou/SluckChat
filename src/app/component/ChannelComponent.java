@@ -20,4 +20,12 @@ public class ChannelComponent {
 		channelRepository.save(c);
 		return c;
 	}
+
+	public void delete(Channel channel) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
 }

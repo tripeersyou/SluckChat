@@ -8,4 +8,6 @@ import app.entity.Channel;
 @Repository
 public interface ChannelRepository extends JpaRepository<Channel,Long>{
 
+	
+
 }
