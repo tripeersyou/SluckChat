@@ -32,20 +32,13 @@ public class UserTeamController {
 	
 	@Autowired
 	private TeamComponent team_component;
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public UserTeam get(@QueryParam("id") Long id) {
-		return team_comp.getUserTeam(id);
-	}
+
 	
 	@POST
 	@Path("/new")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserTeam createUserTeam(@FormParam("user") Long user_id, @FormParam("team") Long team_id) throws IOException{
-		
-		
 		User user = user_comp.getUser(user_id);
  		Team team = team_component.getTeam(team_id);
 		UserTeam u = new UserTeam();
@@ -54,4 +47,16 @@ public class UserTeamController {
 		return team_comp.create(u);
 	}
 	
+	@POST
+	@Path("/remove")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserTeam goodbyeUser(@FormParam("team") Long team_id, @FormParam("user") Long user_id) throws IOException{
+		User u = user_comp.getUser(user_id);
+		Team t = team_component.getTeam(user_id);
+		UserTeam ut = team_comp.getUserTeam(u,t);
+		return team_comp.goodbye(ut);
+	}
+	
 }
+ 	

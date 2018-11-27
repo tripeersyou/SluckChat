@@ -20,4 +20,6 @@ public class UserComponent {
 		userRepository.save(u);
 		return u;
 	}
+	
+	
 }

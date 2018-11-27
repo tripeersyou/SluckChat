@@ -39,4 +39,14 @@ public class TeamsController {
 		t.setName(name);
 		return teamComponent.create(t);
 	}
+	
+	@POST 
+	@Path("/edit")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Team edit(@FormParam("id") Long id, @FormParam("name") String name) throws IOException{
+		Team t = teamComponent.getTeam(id);
+		t.setName(name);
+		return teamComponent.create(t);
+	}
 }
