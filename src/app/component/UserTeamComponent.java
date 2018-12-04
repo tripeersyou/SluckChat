@@ -14,16 +14,9 @@ public class UserTeamComponent {
 	@Autowired
 	private UserTeamRepository user_team_repo;
 	
-	@Autowired
-	private TeamComponent teamComponent;
-	
-	@Autowired
-	private UserComponent userComponent;
-	
 	public UserTeam getUserTeam(User u, Team t){
 			return user_team_repo.findByUserAndTeam(u, t);
 	}
-	
 	
 	public UserTeam create(UserTeam u){
 		user_team_repo.save(u);

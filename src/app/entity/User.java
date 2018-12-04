@@ -59,24 +59,11 @@ public class User {
 		    )
 	 private List<UserTeam> teams;
 	 
-//	public List<Team> getTeams() {
-//		return teams;
-//	}
-//
-//
-//	public void setTeams(List<Team> teams) {
-//		this.teams = teams;
-//	}
-
-//
-//	public List<Channel> getChannels() {
-//		return channels;
-//	}
-//
-//
-//	public void setChannels(List<Channel> channels) {
-//		this.channels = channels;
-//	}
-	
-	
+	 @OneToMany(
+			 	mappedBy = "user",
+		        cascade = CascadeType.ALL, 
+		        orphanRemoval = true
+		    )
+	 private List<UserChannel> channels;
+	 
 }

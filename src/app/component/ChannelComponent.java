@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.entity.Channel;
+import app.entity.UserChannel;
 import app.repository.ChannelRepository;
 
 @Component
@@ -21,11 +22,10 @@ public class ChannelComponent {
 		return c;
 	}
 
-	public void delete(Channel channel) {
-		// TODO Auto-generated method stub
-		
+	public Channel goodbyeChannel(Channel c){
+		Channel cc = c;
+		channelRepository.delete(c.getId());
+		return cc;
 	}
-	
-	
 	
 }

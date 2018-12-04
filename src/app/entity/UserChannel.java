@@ -30,8 +30,6 @@ public class UserChannel {
 		this.user = user;
 	}
 
-
-
 	public Channel getChannel() {
 		return channel;
 	}
@@ -39,8 +37,6 @@ public class UserChannel {
 	public void setChannel(Channel channel) {
 		this.channel = channel;
 	}
-
-
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
