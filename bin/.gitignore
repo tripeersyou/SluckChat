@@ -1,1 +1,5 @@
 /app/
+/db.properties
+/persistence.xml
+/JerseyStarter.class
+/Program.class

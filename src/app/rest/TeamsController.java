@@ -14,8 +14,14 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.component.ChannelComponent;
 import app.component.TeamComponent;
+import app.component.UserComponent;
+import app.component.UserTeamComponent;
+import app.entity.Channel;
 import app.entity.Team;
+import app.entity.User;
+import app.entity.UserTeam;
 
 @Component
 @Path("/teams")
@@ -24,12 +30,47 @@ public class TeamsController {
 	@Autowired
 	private TeamComponent teamComponent;
 	
+	@Autowired
+	private UserComponent user_comp;
+	
+	@Autowired
+	private UserTeamComponent team_comp;
+	
+	@Autowired 
+	private ChannelComponent channel_comp;
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Team show(@QueryParam("team_id") Long id) {
 		return teamComponent.getTeam(id);
 	}
 	
+	//userteam
+	@POST
+	@Path("/add")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserTeam createUserTeam(@FormParam("user") Long user_id, @FormParam("team") Long team_id) throws IOException{
+		User user = user_comp.getUser(user_id);
+ 		Team team = teamComponent.getTeam(team_id);
+		UserTeam u = new UserTeam();
+		u.setTeam(team);
+		u.setUser(user);
+		return team_comp.create(u);
+	}
+	
+	@POST
+	@Path("/remove")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserTeam goodbyeUser(@FormParam("team") Long team_id, @FormParam("user") Long user_id) throws IOException{
+		User u = user_comp.getUser(user_id);
+		Team t = teamComponent.getTeam(user_id);
+		UserTeam ut = team_comp.getUserTeam(u,t);
+		return team_comp.goodbye(ut);
+	}
+	 
+	//team
 	@POST
 	@Path("/new")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -48,5 +89,28 @@ public class TeamsController {
 		Team t = teamComponent.getTeam(id);
 		t.setName(name);
 		return teamComponent.create(t);
+	}
+	
+	//channel
+	@POST
+	@Path("/channel/new")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Channel createChannel(@FormParam("name") String name, @FormParam("team") long team_id) throws IOException{
+			Team team = teamComponent.getTeam(team_id);
+			Channel c = new Channel();
+			c.setTeam(team);
+			c.setName(name);
+			return channel_comp.createChannel(c);
+		}
+	
+	@POST 
+	@Path("/channel/edit")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Channel editChannel(@FormParam("name") String name, @FormParam("id")Long id) throws IOException{
+		Channel c = channel_comp.getChannel(id);
+		c.setName(name);
+		return channel_comp.createChannel(c);
 	}
 }
