@@ -46,10 +46,12 @@ public class UsersController {
 	@Path("/edit")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User editUser(@FormParam("id") Long id, @FormParam("first_name") String firstName, @FormParam("last_name") String lastName) throws IOException{
+	public User editUser(@FormParam("id") Long id, @FormParam("first_name") String firstName, @FormParam("last_name") String lastName,  @FormParam("username") String username,  @FormParam("password") String password) throws IOException{
 		User u = userComponent.getUser(id);
 		u.setFirstName(firstName);
 		u.setLastName(lastName);
+		u.setUsername(username);
+		u.setPassword(password);
 		return userComponent.create(u);
 	}
 	
