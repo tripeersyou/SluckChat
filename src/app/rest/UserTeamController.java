@@ -38,7 +38,7 @@ public class UserTeamController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserTeam goodbyeUser(@FormParam("team") Long team_id, @FormParam("user") Long user_id) throws IOException{
 		User u = user_comp.getUser(user_id);
-		Team t = team_component.getTeam(user_id);
+		Team t = team_component.getTeam(team_id);
 		UserTeam ut = team_comp.getUserTeam(u,t);
 		return team_comp.goodbye(ut);
 	}

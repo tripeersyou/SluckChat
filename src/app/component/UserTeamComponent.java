@@ -1,5 +1,7 @@
 package app.component;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,11 @@ public class UserTeamComponent {
 	private UserTeamRepository user_team_repo;
 	
 	public UserTeam getUserTeam(User u, Team t){
-			return user_team_repo.findByUserAndTeam(u, t);
+		return user_team_repo.findByUserAndTeam(u, t);
+	}
+	
+	public List<UserTeam> getTeamUser(User u){
+		return user_team_repo.findByUser(u);
 	}
 	
 	public UserTeam create(UserTeam u){
@@ -25,7 +31,7 @@ public class UserTeamComponent {
 	
 	public UserTeam goodbye(UserTeam u){
 		UserTeam ut = u;
-		user_team_repo.delete(u.getId());;
+		user_team_repo.delete(u.getId());
 		return ut;
 	}
 }

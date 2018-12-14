@@ -1,6 +1,7 @@
 package app.rest;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -45,6 +46,14 @@ public class TeamsController {
 		return teamComponent.getTeam(id);
 	}
 	
+	@GET
+	@Path("/users")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<UserTeam> showMembers(@QueryParam("team_id") Long id) {
+		Team team = teamComponent.getTeam(id);
+		return teamComponent.getMembers(team);
+	}
+	
 	//userteam
 	@POST
 	@Path("/add")
@@ -65,7 +74,7 @@ public class TeamsController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserTeam goodbyeUser(@FormParam("team") Long team_id, @FormParam("user") Long user_id) throws IOException{
 		User u = user_comp.getUser(user_id);
-		Team t = teamComponent.getTeam(user_id);
+		Team t = teamComponent.getTeam(team_id);
 		UserTeam ut = team_comp.getUserTeam(u,t);
 		return team_comp.goodbye(ut);
 	}
@@ -92,6 +101,15 @@ public class TeamsController {
 	}
 	
 	//channel
+	@GET
+	@Path("/channel/")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Channel> teamChannels(@QueryParam("team_id") long team_id) throws IOException{
+			Team team = teamComponent.getTeam(team_id);
+			return channel_comp.getChannels(team);
+	}
+	
 	@POST
 	@Path("/channel/new")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -102,7 +120,7 @@ public class TeamsController {
 			c.setTeam(team);
 			c.setName(name);
 			return channel_comp.createChannel(c);
-		}
+	}
 	
 	@POST 
 	@Path("/channel/edit")
@@ -112,5 +130,13 @@ public class TeamsController {
 		Channel c = channel_comp.getChannel(id);
 		c.setName(name);
 		return channel_comp.createChannel(c);
+	}
+	
+	@GET
+	@Path("/user")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<UserTeam> userTeams(@QueryParam("user_id") Long id){
+		User u = user_comp.getUser(id);
+		return team_comp.getTeamUser(u);
 	}
 }

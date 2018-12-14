@@ -50,10 +50,5 @@ public class Channel {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
-	 @OneToMany(
-			 	mappedBy = "channel",
-		        cascade = CascadeType.ALL, 
-		        orphanRemoval = true
-		    )
-	 private List<UserChannel> channels;
+
 }

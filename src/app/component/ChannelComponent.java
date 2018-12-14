@@ -1,10 +1,12 @@
 package app.component;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.entity.Channel;
-import app.entity.UserChannel;
+import app.entity.Team;
 import app.repository.ChannelRepository;
 
 @Component
@@ -26,6 +28,10 @@ public class ChannelComponent {
 		Channel cc = c;
 		channelRepository.delete(c.getId());
 		return cc;
+	}
+	
+	public List<Channel> getChannels(Team team){
+		return channelRepository.findByTeam(team);
 	}
 	
 }
